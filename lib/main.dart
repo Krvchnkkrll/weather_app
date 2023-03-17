@@ -1,11 +1,11 @@
-
-
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_api.dart';
 import 'package:weather_app/views/additional_information.dart';
 import 'package:weather_app/views/current_weather.dart';
+import 'package:dcdg/dcdg.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: HomePage(),
     );
   }
@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                       additionalInformation(
                           "${data!.wind} м/с",
                           "${data!.humidity}",
-                          "${data!.pressure} мм ртутного столба",
+                          "${(data!.pressure)} мм ртутного столба",
                           "${data!.feels_like}°C")
                     ],
                   );

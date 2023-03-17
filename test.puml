@@ -1,0 +1,49 @@
+@startuml
+set namespaceSeparator ::
+
+class "weather_app::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "weather_app::main.dart::MyApp"
+
+class "weather_app::main.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "weather_app::main.dart::HomePage"
+
+class "weather_app::main.dart::_HomePageState" {
+  +WeatherApiClient client
+  +Weather? data
+  +int location
+  +double x
+  +String searchValue
+  -List<String> _suggestions
+  +Icon customIcon
+  +Widget customTitle
+  +Future<void> getData()
+  +Widget build()
+}
+
+"weather_app::main.dart::_HomePageState" o-- "weather_app::services::weather_api.dart::WeatherApiClient"
+"weather_app::main.dart::_HomePageState" o-- "weather_app::models::weather_model.dart::Weather"
+"weather_app::main.dart::_HomePageState" o-- "flutter::src::widgets::icon.dart::Icon"
+"weather_app::main.dart::_HomePageState" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::State" <|-- "weather_app::main.dart::_HomePageState"
+
+class "weather_app::models::weather_model.dart::Weather" {
+  +String? cityName
+  +double? temp
+  +double? wind
+  +int? humidity
+  +double? feels_like
+  +int? pressure
+}
+
+class "weather_app::services::weather_api.dart::WeatherApiClient" {
+  +Future<Weather>? getCurrentWeather()
+}
+
+
+@enduml

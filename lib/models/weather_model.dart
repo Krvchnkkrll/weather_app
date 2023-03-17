@@ -4,7 +4,7 @@ class Weather{
   double? wind;
   int? humidity;
   double? feels_like;
-  int? pressure;
+  double? pressure;
 
   Weather({
     this.cityName,
@@ -19,6 +19,6 @@ class Weather{
     wind = json["wind"]["speed"];
     humidity = json["main"]["humidity"];
     feels_like = json["main"]["feels_like"];
-    pressure = json["main"]["pressure"];
+    pressure = (json["main"]["pressure"]*0.750064).round();
   }
 }
